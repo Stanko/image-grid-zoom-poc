@@ -2,14 +2,37 @@ import React, { useState } from 'react';
 import { Flipper } from 'react-flip-toolkit';
 import Images from './images';
 
-const imageFiles = [];
+let imageFiles = [];
 
-if (process.env.LOCAL) {
-  const imageFilesObject = require('../img/image-**.png');
+function shuffle(array) {
+  let currentIndex = array.length,
+    randomIndex;
 
-  for (let imageKey in imageFilesObject) {
-    imageFiles[parseInt(imageKey, 10) - 1] = imageFilesObject[imageKey];
+  // While there remain elements to shuffle...
+  while (currentIndex !== 0) {
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
+
+  return array;
+}
+
+if (process.env.USE_LOCAL_IMAGES) {
+  imageFiles = ((ctx) => {
+    return ctx
+      .keys()
+      .map(ctx)
+      .map((v) => v.default);
+  })(require.context('../img/', true, /.*/));
+
+  imageFiles = shuffle(imageFiles);
 } else {
   for (let i = 0; i < 100; i++) {
     imageFiles.push(`https://picsum.photos/seed/${Math.random()}/300/550`);
