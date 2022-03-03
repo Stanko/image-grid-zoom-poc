@@ -4,9 +4,10 @@ import ImageBlock from './image-block';
 
 const AnimatedSquare = () => {
   const [flipKey, setFlipKey] = useState(1);
+  const [debug, setDebug] = useState(false);
 
   const blockCount = 20;
-  const imagesPerBlock = 16;
+  const imagesPerBlock = 8;
   const blocks = [];
 
   for (let i = 0; i < blockCount; i++) {
@@ -27,8 +28,9 @@ const AnimatedSquare = () => {
         <button onClick={() => setFlipKey('1')}>1</button>
         <button onClick={() => setFlipKey('0_5')}>0.5</button>
         <button onClick={() => setFlipKey('0_25')}>0.25</button>
+        <button onClick={() => setDebug(!debug)}>Toggle debug</button>
       </div>
-      <div class="images">
+      <div class={`images ${debug ? 'images--debug' : ''}`}>
         {blocks.map((block, index) => {
           return (
             <ImageBlock id={block.id} flipKey={flipKey}>
