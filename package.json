@@ -4,11 +4,15 @@
   "description": "",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "rm -rf ./docs && parcel build src/index.html --dist-dir ./docs --public-url /image-grid-zoom-poc/ && touch ./docs/.nojekyll"
+    "start-local": "LOCAL=true parcel src/index.html",
+    "build": "rm -rf ./docs && parcel build src/index.html --dist-dir ./docs --public-url /image-grid-zoom-poc/ && touch ./docs/.nojekyll",
+    "build-local": "rm -rf ./docs && LOCAL=true parcel build src/index.html --public-url ./"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@parcel/resolver-glob": "^2.3.2",
+    "@parcel/transformer-sass": "^2.3.2",
     "parcel": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

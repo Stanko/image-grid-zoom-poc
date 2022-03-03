@@ -1,51 +1,36 @@
 import React, { useState } from 'react';
-import { Flipper, Flipped } from 'react-flip-toolkit';
 import ImageBlock from './image-block';
 
-const AnimatedSquare = () => {
-  const [flipKey, setFlipKey] = useState(1);
-  const [debug, setDebug] = useState(false);
-
-  const blockCount = 20;
-  const imagesPerBlock = 8;
-  const blocks = [];
-
-  for (let i = 0; i < blockCount; i++) {
-    const images = [];
-    for (let j = 0; j < imagesPerBlock; j++) {
-      images.push(`https://picsum.photos/id/${i * imagesPerBlock + j}/300/400`);
-    }
-    blocks.push({
-      id: `block-${i}`,
-      images,
-    });
-  }
+const AnimatedSquare = ({ flipKey, debug, id, blocks }) => {
+  const visibleBlocks = {
+    1: 3,
+    '0_5': 6,
+    '0_25': 24,
+  };
 
   return (
-    <Flipper flipKey={flipKey}>
-      <div className="controls">
-        Zoom:
-        <button onClick={() => setFlipKey('1')}>1</button>
-        <button onClick={() => setFlipKey('0_5')}>0.5</button>
-        <button onClick={() => setFlipKey('0_25')}>0.25</button>
-        <button onClick={() => setDebug(!debug)}>Toggle debug</button>
-      </div>
-      <div className={`images ${debug ? 'images--debug' : ''}`}>
-        {blocks.map((block, index) => {
-          return (
-            <ImageBlock id={block.id} key={block.id} flipKey={flipKey}>
-              {block.images.map((image) => {
-                return (
-                  <div className="image-wrapper" key={image}>
-                    <img className="image" src={image} />
-                  </div>
-                );
-              })}
-            </ImageBlock>
-          );
-        })}
-      </div>
-    </Flipper>
+    <div className={`images ${debug ? 'images--debug' : ''}`}>
+      {blocks.map((block, index) => {
+        const visible = index < visibleBlocks[flipKey];
+
+        return (
+          <ImageBlock
+            id={id + block.id}
+            key={block.id}
+            flipKey={flipKey}
+            visible={visible}
+          >
+            {block.images.map((image) => {
+              return (
+                <div className="image-wrapper" key={image}>
+                  <img className="image" src={image} />
+                </div>
+              );
+            })}
+          </ImageBlock>
+        );
+      })}
+    </div>
   );
 };
 

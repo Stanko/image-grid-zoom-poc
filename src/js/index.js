@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import Images from './images';
+import App from './app';
 
 const app = document.getElementById('app');
-ReactDOM.render(<Images />, app);
+ReactDOM.render(<App />, app);
