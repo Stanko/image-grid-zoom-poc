@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: black;
+  color: #f5f6f6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+input {
+  border-radius: 0;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+.controls {
+  top: 0;
+  background: black;
+  position: fixed;
+  padding: 20px;
+  z-index: 10000;
+}
+
+button {
+  width: 60px;
+  margin: 0 5px;
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-wrapper {
+  flex-basis: 25%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-block {
+  flex-basis: 100%;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.image-block--0_5 {
+  flex-basis: 50%;
+  height: 200px;
+}
+
+.image-block--0_25 {
+  flex-basis: 25%;
+  height: 100px;
+}
