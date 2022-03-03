@@ -23,21 +23,21 @@ const AnimatedSquare = () => {
 
   return (
     <Flipper flipKey={flipKey}>
-      <div class="controls">
+      <div className="controls">
         Zoom:
         <button onClick={() => setFlipKey('1')}>1</button>
         <button onClick={() => setFlipKey('0_5')}>0.5</button>
         <button onClick={() => setFlipKey('0_25')}>0.25</button>
         <button onClick={() => setDebug(!debug)}>Toggle debug</button>
       </div>
-      <div class={`images ${debug ? 'images--debug' : ''}`}>
+      <div className={`images ${debug ? 'images--debug' : ''}`}>
         {blocks.map((block, index) => {
           return (
-            <ImageBlock id={block.id} flipKey={flipKey}>
+            <ImageBlock id={block.id} key={block.id} flipKey={flipKey}>
               {block.images.map((image) => {
                 return (
-                  <div class="image-wrapper" key={image}>
-                    <img class="image" src={image} />
+                  <div className="image-wrapper" key={image}>
+                    <img className="image" src={image} />
                   </div>
                 );
               })}
