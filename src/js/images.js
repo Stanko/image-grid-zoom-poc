@@ -9,7 +9,9 @@ const AnimatedSquare = ({ flipKey, debug, id, blocks }) => {
   };
 
   return (
-    <div className={`images ${debug ? 'images--debug' : ''}`}>
+    <div
+      className={`images images--${flipKey} ${debug ? 'images--debug' : ''}`}
+    >
       {blocks.map((block, index) => {
         const visible = index < visibleBlocks[flipKey];
 

@@ -4,12 +4,13 @@
   "description": "",
   "scripts": {
     "start": "parcel src/index.html",
-    "start-local": "LOCAL=true parcel src/index.html",
+    "local-img": "LOCAL=true parcel src/index.html",
     "build": "rm -rf ./docs && parcel build src/index.html --dist-dir ./docs --public-url /image-grid-zoom-poc/ && touch ./docs/.nojekyll",
-    "build-local": "rm -rf ./docs && LOCAL=true parcel build src/index.html --public-url ./"
+    "build-local-img": "rm -rf ./dist && LOCAL=true parcel build src/index.html --public-url ./"
   },
   "author": "",
   "license": "MIT",
+  "browserslist": "> 0.5%, last 2 versions, not dead, ie >= 11",
   "dependencies": {
     "@parcel/resolver-glob": "^2.3.2",
     "@parcel/transformer-sass": "^2.3.2",
